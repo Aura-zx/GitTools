@@ -9,3 +9,4 @@ Tools for computing contributions by git operations
 - [] 支持指定文件夹下的贡献合并
 - [] 支持进度显示
 - [] 支持结果图形化
+- [] 单元测试
