@@ -2,6 +2,8 @@
 Tools for computing contributions by git operations
 
 ## RoadMap
+- [x] ts初始化
+- [] tsc支持
 - [] 支持按历史提交计算贡献
 - [] 支持按文件最后一次提交计算贡献
 - [] 支持按作者分类显示贡献

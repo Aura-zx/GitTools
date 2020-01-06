@@ -1,9 +1,8 @@
 #! /usr/bin/env node
 
-const { readdirSync, lstatSync } = require('fs');
-const { join, relative } = require('path');
-
-const { exec } = require('child_process');
+import { readdirSync, lstatSync } from 'fs';
+import { join, relative } from 'path';
+import { exec } from 'child_process';
 
 const root = process.cwd();
 
@@ -11,11 +10,11 @@ console.log(join(root, 'name'));
 
 const excludes = [ '.git', '.gitignore' ];
 
-function findAllFileNames(root) {
-	let fnames = [];
-	const findName = (path) => {
+function findAllFileNames(root: string): string[] {
+	let fnames: string[] = [];
+	const findName = (path: string) => {
 		let names = readdirSync(path);
-		names.forEach((name) => {
+		names.forEach((name: string) => {
 			let fpath = join(path, name);
 			if (excludes.includes(name)) {
 				return;
@@ -30,7 +29,7 @@ function findAllFileNames(root) {
 	return fnames;
 }
 
-function parseLogInfo(stdoutInfo) {
+function parseLogInfo(stdoutInfo: string) {
 	const info = stdoutInfo.toString().split('\n');
 	return info;
 }
