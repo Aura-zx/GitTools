@@ -29,11 +29,6 @@ function findAllFileNames(root: string): string[] {
 	return fnames;
 }
 
-function parseLogInfo(stdoutInfo: string) {
-	const info = stdoutInfo.toString().split('\n');
-	return info;
-}
-
 const fnames = findAllFileNames(root);
 const relativeNames = fnames.map((fname) => relative(root, fname));
 

@@ -1,9 +1,10 @@
 interface IGitLogInfo {
-	commitId: string;
+	sha: string;
+	author: string;
 	date: string;
 	commitMsg: string;
-	insertions?: number;
-	deletions?: number;
+	insertions: number;
+	deletions: number;
 }
 
 export { IGitLogInfo };
