@@ -1,7 +1,33 @@
 import { IGitLogInfo } from './IGitLogInfo';
+
+enum logAttr {
+	SHA = 0,
+	AUTHOR = 1,
+	DATE = 2,
+	COMMITMSG = 3,
+	DIFF = 4
+}
+
+const LOGATTRSIZE = 5
+
 function parseGitLog(log: string): IGitLogInfo[] {
-	const lines = log.toString().split('\r\n');
 	let gitLogInfo: IGitLogInfo[] = [];
+
+	let progress = logAttr.SHA;
+	const lines = log.toString().split('\r\n');
+	lines.reduce((logs: IGitLogInfo[], cur: string) => {
+		let attr = progress % LOGATTRSIZE
+		if (attr === logAttr.SHA) {
+			let log = {
+				commit: cur.split(' ')[1]
+			}
+			logs.push(log)
+			progress++;
+			return logs
+		} else if (attr === logAttr.AUTHOR) {
+			logs[logs.length - 1].push(cur.split(':')[1].trim())
+		}
+	}, []);
 
 	return gitLogInfo;
 }
